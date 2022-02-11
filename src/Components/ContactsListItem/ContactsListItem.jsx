@@ -1,8 +1,12 @@
-import PropTypes from "prop-types";
-const ContactsListItem = ({ filter, removeName }) => {
+import { useContext } from "react";
+import {PhonebookContext} from '../Context/Context';
+
+const ContactsListItem = () => {
+
+  const {filterFunc , removeName} = useContext(PhonebookContext);
   return (
     <>
-      {filter.map((contact) => (
+      {filterFunc.map((contact) => (
         <li key={contact.id}>
           <p>
             {contact.name}:{contact.number}
@@ -21,14 +25,4 @@ const ContactsListItem = ({ filter, removeName }) => {
   );
 };
 
-ContactsListItem.prototypes = {
-  filter: PropTypes.string.isRequired,
-  removeName: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      contact: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-};
 export default ContactsListItem;
